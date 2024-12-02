@@ -31,3 +31,37 @@ const gifts3 = [];
 const preparedGifts3 = prepareGifts(gifts3);
 // Mostramos los regalos preparados en consola
 console.log(preparedGifts3); // Salida esperada: []
+
+
+
+//IMPLEMENTACION EN CLASICA
+console.log('----------classic----------');
+function prepareGiftsClassic(gifts) {
+  // Paso 1: Eliminar duplicados usando un ciclo `for`
+  let uniqueGifts = [];
+  for (let i = 0; i < gifts.length; i++) {
+    // Solo agregamos el regalo si no está ya en el arreglo `uniqueGifts`
+    if (!uniqueGifts.includes(gifts[i])) {
+      uniqueGifts.push(gifts[i]);
+    }
+  }
+
+  // Paso 2: Ordenar los regalos de menor a mayor utilizando un ciclo `for` (algoritmo de ordenación Bubble Sort)
+  for (let i = 0; i < uniqueGifts.length; i++) {
+    for (let j = 0; j < uniqueGifts.length - 1; j++) {
+      // Si el elemento actual es mayor que el siguiente, los intercambiamos
+      if (uniqueGifts[j] > uniqueGifts[j + 1]) {
+        let temp = uniqueGifts[j];
+        uniqueGifts[j] = uniqueGifts[j + 1];
+        uniqueGifts[j + 1] = temp;
+      }
+    }
+  }
+
+  // Paso 3: Devolvemos el arreglo sin duplicados y ordenado
+  return uniqueGifts;
+}
+
+// Ejemplo de uso
+const gifts = [4, 1, 3, 2, 1, 5, 3];
+console.log(prepareGiftsClassic(gifts));  // Resultado esperado: [1, 2, 3, 4, 5]
